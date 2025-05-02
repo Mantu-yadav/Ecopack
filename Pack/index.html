@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoPack | Sustainable Packaging Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="script.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="LOGOPACK.png" alt="EcoPack Logo">
+                <span>EcoPack</span>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#materials">Materials</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <button class="login-btn" onclick="toggleLoginModal()">
+                    <i class="fas fa-user"></i>
+                    <span>Login</span>
+                </button>
+                <div class="cart-btn" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login/Register Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="toggleLoginModal()">&times;</span>
+            
+            <!-- User Info Section (when logged in) -->
+            <div id="userInfoSection" class="auth-form" style="display: none;">
+                <h2>Welcome Back</h2>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <p id="userEmailDisplay"></p>
+                </div>
+                <button class="btn logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form active">
+                <h2>Login to Your Account</h2>
+                <div class="not-registered-message" id="notRegisteredMessage" style="display: none;">
+                    <p class="error-text">Email not registered!</p>
+                    <button class="btn secondary-btn" onclick="toggleAuthForms('register')">Register Now</button>
+                </div>
+                <form id="loginFormElement" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <input type="email" id="loginEmail" placeholder="Email Address" required>
+                        <small class="error-message" id="loginEmailError"></small>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="loginPassword" placeholder="Password" required>
+                        <small class="error-message" id="loginPasswordError"></small>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                </form>
+                <p class="modal-footer">
+                    Don't have an account? <a href="#" onclick="toggleAuthForms('register')">Register</a>
+                </p>
+                <p class="modal-footer">
+                    <a href="#" onclick="toggleAuthForms('reset')">Forgot Password?</a>
+                </p>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" class="auth-form">
+                <h2>Create New Account</h2>
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <input type="text" id="registerName" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="registerEmail" placeholder="Email Address" required>
+                        <small class="error-message" id="registerEmailError"></small>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="registerPassword" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="btn">Create Account</button>
+                </form>
+                <p class="modal-footer">
+                    Already have an account? <a href="#" onclick="toggleAuthForms('login')">Login</a>
+                </p>
+            </div>
+
+            <!-- Password Reset Form -->
+            <div id="resetForm" class="auth-form">
+                <h2>Reset Password</h2>
+                <form onsubmit="handlePasswordReset(event)">
+                    <div class="form-group">
+                        <input type="email" id="resetEmail" 
+                               placeholder="Email Address" 
+                               required>
+                        <small class="error-message" id="resetEmailError"></small>
+                    </div>
+                    <button type="submit" class="btn">Send Reset Link</button>
+                </form>
+                <p class="modal-footer">
+                    Remember your password? <a href="#" onclick="toggleAuthForms('login')">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹0.00</span>
+            </div>
+            <button class="btn checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Innovative Packaging for a Sustainable Future</h1>
+                <p>Eco-friendly packaging solutions tailored to your brand's needs</p>
+                <a href="#contact" class="btn">Get a Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions/Products Section -->
+    <section class="solutions" id="products">
+        <div class="container">
+            <h2 class="section-title">Our Products</h2>
+            <p class="section-subtitle">Custom products for every industry</p>
+            <div class="solutions-grid">
+                <!-- Food & Beverage Card -->
+                <div class="solution-card" onclick="handleProductNavigation('food-beverage.html')">
+                    <div class="solution-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Food & Beverage</h3>
+                    <p>Sustainable packaging for food and drinks</p>
+                    <!-- Quick add button -->
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart({
+                        id: 'quick-food-box',
+                        name: 'Eco Food Box',
+                        price: 199,
+                        image: 'images/products/food-box.jpg'
+                    })">
+                        <i class="fas fa-cart-plus"></i> Quick Add
+                    </button>
+                </div>
+                
+                <!-- Cosmetics & Beauty Card -->
+                <div class="solution-card" onclick="handleProductNavigation('cosmetics-beauty.html')">
+                    <div class="solution-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Cosmetics & Beauty</h3>
+                    <p>Luxurious and eco-friendly beauty packaging</p>
+                    <!-- Quick add button -->
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart({
+                        id: 'quick-beauty-jar',
+                        name: 'Eco Beauty Jar',
+                        price: 299,
+                        image: 'images/products/beauty-jar.jpg'
+                    })">
+                        <i class="fas fa-cart-plus"></i> Quick Add
+                    </button>
+                </div>
+                
+                <!-- Pharmaceutical Card -->
+                <div class="solution-card" onclick="handleProductNavigation('pharmaceutical.html')">
+                    <div class="solution-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>Pharmaceutical</h3>
+                    <p>Safe and compliant medical packaging</p>
+                    <!-- Quick add button -->
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart({
+                        id: 'quick-pill-bottle',
+                        name: 'Eco Pill Bottle',
+                        price: 249,
+                        image: 'images/products/pill-bottle.jpg'
+                    })">
+                        <i class="fas fa-cart-plus"></i> Quick Add
+                    </button>
+                </div>
+                
+                <!-- E-commerce Card -->
+                <div class="solution-card" onclick="handleProductNavigation('ecommerce-innovations.html')">
+                    <div class="solution-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>E-commerce & Innovations</h3>
+                    <p>Smart packaging solutions for online retail</p>
+                    <!-- Quick add button -->
+                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart({
+                        id: 'quick-shipping-box',
+                        name: 'Smart Shipping Box',
+                        price: 349,
+                        image: 'images/products/shipping-box.jpg'
+                    })">
+                        <i class="fas fa-cart-plus"></i> Quick Add
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materials Section -->
+    <section class="materials" id="materials">
+        <div class="container">
+            <h2 class="section-title">Sustainable Materials</h2>
+            <p class="section-subtitle">Better for your brand and the planet</p>
+            
+            <div class="materials-showcase">
+                <div class="material-item">
+                    <div class="material-img">
+                        <img src="Images/Paper.png" alt="Recycled Paper Packaging">
+                    </div>
+                    <div class="material-info">
+                        <h3>Recycled Paper</h3>
+                        <p>Made from 100% post-consumer waste, our paper packaging is fully recyclable and biodegradable.</p>
+                    </div>
+                </div>
+                
+                <div class="material-item reverse">
+                    <div class="material-img">
+                        <img src="Images/Compostableplastic.png" alt="Plant-based Plastics">
+                    </div>
+                    <div class="material-info">
+                        <h3>Plant-based Plastics</h3>
+                        <p>Derived from renewable resources like corn and sugarcane, these plastics decompose naturally.</p>
+                    </div>
+                </div>
+                
+                <div class="material-item">
+                    <div class="material-img">
+                        <img src="Images/Mushroom.jpg" alt="Mushroom Packaging">
+                    </div>
+                    <div class="material-info">
+                        <h3>Mushroom Packaging</h3>
+                        <p>Grown from mycelium, this innovative material is 100% compostable and carbon neutral.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stat-item">
+                <span class="stat-number" data-target="95">0</span>%
+                <p>Reduction in plastic use</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="500">0</span>+
+                <p>Happy clients worldwide</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="100">0</span>%
+                <p>Recyclable materials</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="24">0</span>h
+                <p>Average delivery time</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Why Choose Our Products Section -->
+    <section class="why-choose" id="why-choose">
+        <div class="container">
+            <h2 class="section-title">Why Choose EcoPack?</h2>
+            
+            <div class="why-choose-grid">
+                <div class="why-choose-box">
+                    <div class="box-content">
+                        <div class="icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Eco-Friendly Materials</h3>
+                        <p>Biodegradable, compostable, and recyclable options.</p>
+                    </div>
+                </div>
+
+                <div class="why-choose-box">
+                    <div class="box-content">
+                        <div class="icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>Custom Design</h3>
+                        <p>Tailored packaging for your brand.</p>
+                    </div>
+                </div>
+
+                <div class="why-choose-box">
+                    <div class="box-content">
+                        <div class="icon">
+                            <i class="fas fa-minimize"></i>
+                        </div>
+                        <h3>Minimalist Approach</h3>
+                        <p>Less waste, more efficiency.</p>
+                    </div>
+                </div>
+
+                <div class="why-choose-box">
+                    <div class="box-content">
+                        <div class="icon">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <h3>Smart Packaging</h3>
+                        <p>QR codes & NFC tags for engagement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">About EcoPack</h2>
+                <p>Founded in 2010, EcoPack has been at the forefront of sustainable packaging innovation. Our mission is to help businesses transition to eco-friendly packaging without compromising on quality or design.</p>
+                <p> Whether you're a small business or a large enterprise, EcoPack offers customized solutions that enhance your brand identity, ensure product safety, and deliver an exceptional customer experience — all while supporting a greener future.</p>
+                <p>We combine cutting-edge materials science with beautiful design to create packaging solutions that tell your brand's story while protecting our planet.</p>
+                <p class="tagline"><strong>EcoPack — Packaging that protects products, builds brands, and cares for the Earth.</strong></p>
+                <div class="about-features">
+                    <div class="feature">
+                        <i class="fas fa-leaf"></i>
+                        <span>Carbon Neutral Production</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-award"></i>
+                        <span>Industry Certified</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-truck"></i>
+                        <span>Global Shipping</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="Background1.png" alt="About EcoPack">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="section-subtitle">Ready to transform your packaging? Contact us today.</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <p>123 Anandapur, E.K.T, Kolkata,700107,West Bengal</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+91 xxxxxx9503</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@ecopack.com</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="quoteForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <select id="interest" required>
+                            <option value="" disabled selected>I'm interested in...</option>
+                            <option value="food">Food & Beverage Packaging</option>
+                            <option value="pharma">Pharmaceutical Packaging</option>
+                            <option value="retail">Ecommerce & General Innovations Packaging</option>
+                            <option value="luxury">Cosmetics & Beauty Packaging Packaging</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" placeholder="Tell us about your packaging needs"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Request Quote</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="logo">
+                        <img src="Images/LOGOPACK.png" alt="EcoPack Logo">
+                        <span>EcoPack</span>
+                    </div>
+                    <p>Leading the way in sustainable packaging solutions since 2010.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#materials">Materials</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Custom Design</a></li>
+                        <li><a href="#">Prototyping</a></li>
+                        <li><a href="#">Bulk Manufacturing</a></li>
+                        <li><a href="#">Sustainability Consulting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest in sustainable packaging.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 EcoPack. All Rights Reserved.</p>
+                <div class="legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+      import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateProfile } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCaonDQGpYf5RApCn624J8Xfko03LIl89o",
+        authDomain: "ecopack-19e93.firebaseapp.com",
+        projectId: "ecopack-19e93",
+        storageBucket: "ecopack-19e93.firebasestorage.app",
+        messagingSenderId: "922149929294",
+        appId: "1:922149929294:web:363c9721d2129f8c951e1f",
+        measurementId: "G-24RXW0829K"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const auth = getAuth(app);
+      
+      console.log("Firebase initialized in module");
+      
+      // Make Firebase available globally
+      window.firebase = {
+        auth: () => auth,
+        authFunctions: {
+          createUserWithEmailAndPassword,
+          signInWithEmailAndPassword,
+          signOut,
+          sendPasswordResetEmail,
+          updateProfile
+        }
+      };
+      
+      console.log("Firebase exposed to window object", window.firebase);
+    </script>
+
+    <script>
+      // Wait for Firebase to be initialized
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log("DOM fully loaded");
+        // Check if Firebase is available
+        const checkFirebase = setInterval(() => {
+          if (window.firebase) {
+            console.log("Firebase detected in window object");
+            clearInterval(checkFirebase);
+          }
+        }, 100);
+      });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

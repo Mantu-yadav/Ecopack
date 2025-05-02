@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce & Innovations | EcoPack</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="LOGOPACK.png" alt="EcoPack Logo">
+                <span>EcoPack</span>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#solutions">Solutions</a></li>
+                    <li><a href="index.html#materials">Materials</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                </ul>
+            </nav>
+            <div class="cart-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Banner -->
+    <div class="category-banner">
+        <div class="container">
+            <h1>Ecommerce & General Innovations</h1>
+            <p>Smart, sustainable packaging solutions for modern retail</p>
+        </div>
+    </div>
+
+    <!-- Category Navigation -->
+    <div class="category-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#shipping" class="active">Shipping Boxes</a></li>
+                <li><a href="#mailers">Eco Mailers</a></li>
+                <li><a href="#protective">Protective Packaging</a></li>
+                <li><a href="#smart">Smart Packaging</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Product Categories -->
+    <section class="products-section">
+        <div class="container">
+            <!-- Shipping Boxes Category -->
+            <div id="shipping" class="product-category">
+                <h2>Shipping Boxes</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/products/eco-box.jpg" alt="Smart Shipping Box">
+                            <div class="product-tags">
+                                <span class="tag">Recyclable</span>
+                                <span class="tag">Size-Adaptive</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Smart Shipping Box</h3>
+                            <p>Self-adjusting box that reduces void space</p>
+                            <div class="product-meta">
+                                <span class="price">₹299.00</span>
+                                <span class="per-unit">/25 units</span>
+                            </div>
+                            <button class="btn add-to-cart" onclick="addToCart({
+                                id: 'smart-box1',
+                                name: 'Smart Shipping Box',
+                                price: 299,
+                                quantity: 25
+                            })">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/products/kraft-box.jpg" alt="Kraft Mailer Box">
+                            <div class="product-tags">
+                                <span class="tag">100% Recycled</span>
+                                <span class="tag">Water-Resistant</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Premium Kraft Mailer Box</h3>
+                            <p>Sturdy and stylish packaging for ecommerce</p>
+                            <div class="product-meta">
+                                <span class="price">₹399.00</span>
+                                <span class="per-unit">/50 units</span>
+                            </div>
+                            <button class="btn add-to-cart" onclick="addToCart({
+                                id: 'kraft-box1',
+                                name: 'Premium Kraft Mailer Box',
+                                price: 399,
+                                quantity: 50
+                            })">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Eco Mailers Category -->
+            <div id="mailers" class="product-category">
+                <h2>Eco Mailers</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/products/poly-mailer.jpg" alt="Compostable Poly Mailer">
+                            <div class="product-tags">
+                                <span class="tag">Compostable</span>
+                                <span class="tag">Weather-Proof</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Compostable Poly Mailer</h3>
+                            <p>100% compostable shipping mailer with strong seal</p>
+                            <div class="product-meta">
+                                <span class="price">₹199.00</span>
+                                <span class="per-unit">/100 units</span>
+                            </div>
+                            <button class="btn add-to-cart" onclick="addToCart({
+                                id: 'poly-mailer1',
+                                name: 'Compostable Poly Mailer',
+                                price: 199,
+                                quantity: 100
+                            })">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional categories... -->
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <!-- Cart content -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

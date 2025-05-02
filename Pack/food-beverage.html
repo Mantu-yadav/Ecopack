@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food & Beverage Packaging | EcoPack</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="LOGOPACK.png" alt="EcoPack Logo">
+                    <span>EcoPack</span>
+                </a>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#solutions">Solutions</a></li>
+                    <li><a href="index.html#materials">Materials</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                </ul>
+            </nav>
+            <!-- Replace cart-icon with cart-btn -->
+            <div class="cart-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Banner -->
+    <div class="category-banner">
+        <div class="container">
+            <h1>Food & Beverage Packaging</h1>
+            <p>Sustainable packaging solutions for the food industry</p>
+        </div>
+    </div>
+
+    <!-- Category Navigation -->
+    <div class="category-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#boxes" class="active">Boxes</a></li>
+                <li><a href="#glass-jars">Glass Jars</a></li>
+                <li><a href="#cups-glass">Cups and Glass</a></li>
+                <li><a href="#takeaway">Takeaway</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Product Categories -->
+    <section class="products-section">
+        <div class="container">
+            <!-- Boxes Category -->
+            <div id="boxes" class="product-category">
+                <h2>Box Packaging</h2>
+                <div class="products-grid">
+                    <!-- Box 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/BoXes.png" alt="Standard Eco Box">
+                            <div class="product-tags">
+                                <span class="tag">Biodegradable</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Standard Eco Box</h3>
+                            <p>Basic recyclable box, perfect for small items</p>
+                            <div class="product-meta">
+                                <span class="price">₹99.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'box1', name: 'Standard Eco Box', price: 99, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Box 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/juicebox.jpg" alt="Premium Food Box">
+                            <div class="product-tags">
+                                <span class="tag">Food Grade</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Premium Food Box</h3>
+                            <p>Food-grade packaging with moisture resistance</p>
+                            <div class="product-meta">
+                                <span class="price">₹149.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'box2', name: 'Premium Food Box', price: 149, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Box 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/BoXes.png" alt="Luxury Gift Box">
+                            <div class="product-tags">
+                                <span class="tag">Premium</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Luxury Gift Box</h3>
+                            <p>Elegant design with magnetic closure</p>
+                            <div class="product-meta">
+                                <span class="price">₹199.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'box3', name: 'Luxury Gift Box', price: 199, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Box 4 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/BoXes.png" alt="Compact Delivery Box">
+                            <div class="product-tags">
+                                <span class="tag">Lightweight</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Compact Delivery Box</h3>
+                            <p>Space-efficient design for shipping</p>
+                            <div class="product-meta">
+                                <span class="price">₹79.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'box4', name: 'Compact Delivery Box', price: 79, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Box 5 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/BoXes.png" alt="Heavy Duty Box">
+                            <div class="product-tags">
+                                <span class="tag">Industrial</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Heavy Duty Box</h3>
+                            <p>Extra strong for heavy items</p>
+                            <div class="product-meta">
+                                <span class="price">₹249.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'box5', name: 'Heavy Duty Box', price: 249, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Box 6 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/BoXes.png" alt="Window Display Box">
+                            <div class="product-tags">
+                                <span class="tag">Transparent</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Window Display Box</h3>
+                            <p>Clear window for product visibility</p>
+                            <div class="product-meta">
+                                <span class="price">₹169.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'box6', name: 'Window Display Box', price: 169, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Box 7 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/BoXes.png" alt="Insulated Box">
+                            <div class="product-tags">
+                                <span class="tag">Temperature Control</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Insulated Box</h3>
+                            <p>Temperature-maintaining packaging</p>
+                            <div class="product-meta">
+                                <span class="price">₹299.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'box7', name: 'Insulated Box', price: 299, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Box 8 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/BoXes.png" alt="Foldable Storage Box">
+                            <div class="product-tags">
+                                <span class="tag">Collapsible</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Foldable Storage Box</h3>
+                            <p>Space-saving collapsible design</p>
+                            <div class="product-meta">
+                                <span class="price">₹189.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'box8', name: 'Foldable Storage Box', price: 189, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Box 9 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/BoXes.png" alt="Customizable Box">
+                            <div class="product-tags">
+                                <span class="tag">Printable</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Customizable Box</h3>
+                            <p>Print-ready surface for branding</p>
+                            <div class="product-meta">
+                                <span class="price">₹129.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'box9', name: 'Customizable Box', price: 129, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Box 10 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/BoXes.png" alt="Eco Mailer Box">
+                            <div class="product-tags">
+                                <span class="tag">Recyclable</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Eco Mailer Box</h3>
+                            <p>Sustainable shipping solution</p>
+                            <div class="product-meta">
+                                <span class="price">₹159.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'box10', name: 'Eco Mailer Box', price: 159, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Glass Jars Category (Previously Snacks) -->
+            <div id="glass-jars" class="product-category">
+                <h2>Glass Jar Packaging</h2>
+                <div class="products-grid">
+                    <!-- Jar 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/MultiPurpose Glass jar.png" alt="Mason Storage Jar">
+                            <div class="product-tags">
+                                <span class="tag">Airtight</span>
+                                <span class="tag">Reusable</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Mason Storage Jar</h3>
+                            <p>Classic mason jar with airtight metal lid, 500ml</p>
+                            <div class="product-meta">
+                                <span class="price">₹199.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <!-- <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'jar1', name: 'Mason Storage Jar', price: 199, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button> -->
+                            <div class="cart-btn" onclick="toggleCart()">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="cart-count">11</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Jar 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/glass-jar2.png" alt="Hexagonal Jar">
+                            <div class="product-tags">
+                                <span class="tag">Premium</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Hexagonal Jar</h3>
+                            <p>Decorative hexagonal jar with bamboo lid, 250ml</p>
+                            <div class="product-meta">
+                                <span class="price">₹249.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'jar2', name: 'Hexagonal Jar', price: 249, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Jar 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/glass-jar3.png" alt="Preserve Jar">
+                            <div class="product-tags">
+                                <span class="tag">Heat-Resistant</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Preserve Jar</h3>
+                            <p>Wide-mouth preserve jar with clip lid, 750ml</p>
+                            <div class="product-meta">
+                                <span class="price">₹299.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'jar3', name: 'Preserve Jar', price: 299, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Jar 4 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/Masala Glass Jar.png" alt="Mini Spice Jar">
+                            <div class="product-tags">
+                                <span class="tag">Compact</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Mini Spice Jar</h3>
+                            <p>Small jar with shaker lid, 100ml</p>
+                            <div class="product-meta">
+                                <span class="price">₹129.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'jar4', name: 'Mini Spice Jar', price: 129, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Jar 5 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/glass-jar5.png" alt="Square Storage Jar">
+                            <div class="product-tags">
+                                <span class="tag">Space-Saving</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Square Storage Jar</h3>
+                            <p>Modern square design with cork lid, 1L</p>
+                            <div class="product-meta">
+                                <span class="price">₹349.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'jar5', name: 'Square Storage Jar', price: 349, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Jar 6 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/glass-jar6.png" alt="Honey Jar">
+                            <div class="product-tags">
+                                <span class="tag">Specialty</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Honey Jar</h3>
+                            <p>Classic honey jar with dipper lid, 400ml</p>
+                            <div class="product-meta">
+                                <span class="price">₹279.00</span>
+                                <span class="per-unit">/1 unit</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'jar6', name: 'Honey Jar', price: 279, quantity: 1})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cups and Glass Category -->
+            <div id="cups-glass" class="product-category">
+                <h2>Cups and Glass Packaging</h2>
+                <div class="products-grid">
+                    <!-- Cup 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/Cups and glass/My_project_(14)1.png" alt="Eco Paper Cup">
+                            <div class="product-tags">
+                                <span class="tag">Biodegradable</span>
+                                <span class="tag">Hot/Cold</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Eco Paper Cup</h3>
+                            <p>Double-wall paper cup with lid, 250ml</p>
+                            <div class="product-meta">
+                                <span class="price">₹149.00</span>
+                                <span class="per-unit">/50 units</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'cup1', name: 'Eco Paper Cup', price: 149, quantity: 50})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Cup 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/plastic-cup2.png" alt="Clear PET Cup">
+                            <div class="product-tags">
+                                <span class="tag">Recyclable</span>
+                                <span class="tag">Cold Drinks</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Clear PET Cup</h3>
+                            <p>Crystal clear cup with dome lid, 500ml</p>
+                            <div class="product-meta">
+                                <span class="price">₹199.00</span>
+                                <span class="per-unit">/100 units</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'cup2', name: 'Clear PET Cup', price: 199, quantity: 100})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Cup 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/glass-tumbler3.png" alt="Glass Tumbler">
+                            <div class="product-tags">
+                                <span class="tag">Premium</span>
+                                <span class="tag">Reusable</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Glass Tumbler</h3>
+                            <p>Elegant drinking glass, 300ml</p>
+                            <div class="product-meta">
+                                <span class="price">₹299.00</span>
+                                <span class="per-unit">/6 units</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'cup3', name: 'Glass Tumbler', price: 299, quantity: 6})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Cup 4 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/bamboo-cup4.png" alt="Bamboo Cup">
+                            <div class="product-tags">
+                                <span class="tag">Eco-Friendly</span>
+                                <span class="tag">Sustainable</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Bamboo Cup</h3>
+                            <p>Natural bamboo cup with silicone lid, 400ml</p>
+                            <div class="product-meta">
+                                <span class="price">₹399.00</span>
+                                <span class="per-unit">/4 units</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'cup4', name: 'Bamboo Cup', price: 399, quantity: 4})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Cup 5 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/wine-glass5.png" alt="Wine Glass">
+                            <div class="product-tags">
+                                <span class="tag">Premium</span>
+                                <span class="tag">Crystal</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Wine Glass</h3>
+                            <p>Crystal wine glass, 350ml</p>
+                            <div class="product-meta">
+                                <span class="price">₹599.00</span>
+                                <span class="per-unit">/6 units</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'cup5', name: 'Wine Glass', price: 599, quantity: 6})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Cup 6 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Images/disposable-cup6.png" alt="Kraft Paper Cup">
+                            <div class="product-tags">
+                                <span class="tag">Compostable</span>
+                                <span class="tag">Bulk Pack</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Kraft Paper Cup</h3>
+                            <p>Brown kraft paper cup with lid, 200ml</p>
+                            <div class="product-meta">
+                                <span class="price">₹179.00</span>
+                                <span class="per-unit">/100 units</span>
+                            </div>
+                            <button class="btn add-to-cart" 
+                                onclick="addToCart({id: 'cup6', name: 'Kraft Paper Cup', price: 179, quantity: 100})">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Takeaway Category -->
+            <div id="takeaway" class="product-category">
+                <h2>Takeaway Packaging</h2>
+                <div class="products-grid">
+                    <!-- Similar product cards for takeaway -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹0.00</span>
+            </div>
+            <button class="btn checkout-btn" onclick="proceedToCheckout()">Checkout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

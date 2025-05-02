@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | EcoPack</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="LOGOPACK.png" alt="EcoPack Logo">
+                    <span>EcoPack</span>
+                </a>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#solutions">Solutions</a></li>
+                    <li><a href="index.html#materials">Materials</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Checkout Section -->
+    <section class="checkout-section">
+        <div class="container">
+            <h1 class="section-title">Checkout</h1>
+            
+            <div class="checkout-container">
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-items" id="summaryItems">
+                        <!-- Items will be loaded dynamically -->
+                    </div>
+                    <div class="summary-totals">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">₹0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span id="shipping">₹0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax (18% GST)</span>
+                            <span id="tax">₹0.00</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="total">₹0.00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Checkout Form -->
+                <div class="checkout-form-container">
+                    <div class="checkout-steps">
+                        <div class="step active" id="step1">
+                            <span class="step-number">1</span>
+                            <span class="step-text">Shipping</span>
+                        </div>
+                        <div class="step" id="step2">
+                            <span class="step-number">2</span>
+                            <span class="step-text">Payment</span>
+                        </div>
+                        <div class="step" id="step3">
+                            <span class="step-number">3</span>
+                            <span class="step-text">Confirm</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Shipping Form -->
+                    <div class="checkout-form" id="shippingForm">
+                        <h2>Shipping Information</h2>
+                        <form id="shipping-details">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" id="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input type="text" id="city" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pincode">PIN Code</label>
+                                    <input type="text" id="pincode" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <select id="state" required>
+                                    <option value="" disabled selected>Select State</option>
+                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Gujarat">Gujarat</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                    <option value="Telangana">Telangana</option>
+                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                    <option value="West Bengal">West Bengal</option>
+                                    <!-- Add more states as needed -->
+                                </select>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn" onclick="goToPayment()">Continue to Payment</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Payment Form -->
+                    <div class="checkout-form hidden" id="paymentForm">
+                        <h2>Payment Method</h2>
+                        <div class="payment-options">
+                            <div class="payment-option">
+                                <input type="radio" id="upi" name="paymentMethod" value="upi">
+                                <label for="upi">
+                                    <span class="payment-icon"><i class="fas fa-mobile-alt"></i></span>
+                                    <span class="payment-name">UPI</span>
+                                </label>
+                            </div>
+                            <div class="payment-option">
+                                <input type="radio" id="card" name="paymentMethod" value="card" checked>
+                                <label for="card">
+                                    <span class="payment-icon"><i class="far fa-credit-card"></i></span>
+                                    <span class="payment-name">Credit/Debit Card</span>
+                                </label>
+                            </div>
+                            <div class="payment-option">
+                                <input type="radio" id="netbanking" name="paymentMethod" value="netbanking">
+                                <label for="netbanking">
+                                    <span class="payment-icon"><i class="fas fa-university"></i></span>
+                                    <span class="payment-name">Net Banking</span>
+                                </label>
+                            </div>
+                            <div class="payment-option">
+                                <input type="radio" id="wallet" name="paymentMethod" value="wallet">
+                                <label for="wallet">
+                                    <span class="payment-icon"><i class="fas fa-wallet"></i></span>
+                                    <span class="payment-name">Wallet</span>
+                                </label>
+                            </div>
+                            <div class="payment-option">
+                                <input type="radio" id="cod" name="paymentMethod" value="cod">
+                                <label for="cod">
+                                    <span class="payment-icon"><i class="fas fa-money-bill-wave"></i></span>
+                                    <span class="payment-name">Cash on Delivery</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Card Payment Form (default) -->
+                        <div class="payment-details" id="cardPayment">
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number</label>
+                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expiryDate">Expiry Date</label>
+                                    <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="password" id="cvv" placeholder="123" maxlength="3">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nameOnCard">Name on Card</label>
+                                <input type="text" id="nameOnCard">
+                            </div>
+                        </div>
+                        
+                        <!-- UPI Payment Form -->
+                        <div class="payment-details hidden" id="upiPayment">
+                            <div class="form-group">
+                                <label for="upiId">UPI ID</label>
+                                <input type="text" id="upiId" placeholder="yourname@upi">
+                            </div>
+                        </div>
+                        
+                        <!-- Net Banking Payment Form -->
+                        <div class="payment-details hidden" id="netbankingPayment">
+                            <div class="form-group">
+                                <label for="bank">Select Bank</label>
+                                <select id="bank">
+                                    <option value="" disabled selected>Choose your bank</option>
+                                    <option value="sbi">State Bank of India</option>
+                                    <option value="hdfc">HDFC Bank</option>
+                                    <option value="icici">ICICI Bank</option>
+                                    <option value="axis">Axis Bank</option>
+                                    <option value="kotak">Kotak Mahindra Bank</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Wallet Payment Form -->
+                        <div class="payment-details hidden" id="walletPayment">
+                            <div class="form-group">
+                                <label for="wallet-type">Select Wallet</label>
+                                <select id="wallet-type">
+                                    <option value="" disabled selected>Choose your wallet</option>
+                                    <option value="paytm">Paytm</option>
+                                    <option value="phonepe">PhonePe</option>
+                                    <option value="amazonpay">Amazon Pay</option>
+                                    <option value="mobikwik">MobiKwik</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- COD Payment Form -->
+                        <div class="payment-details hidden" id="codPayment">
+                            <p class="cod-note">
+                                <i class="fas fa-info-circle"></i>
+                                Cash on Delivery is available for orders under ₹10,000. A nominal fee of ₹50 will be added to your order.
+                            </p>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn secondary" onclick="backToShipping()">Back</button>
+                            <button type="button" class="btn" onclick="goToConfirm()">Review Order</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Order Confirmation -->
+                    <div class="checkout-form hidden" id="confirmForm">
+                        <h2>Review Your Order</h2>
+                        <div class="confirm-details">
+                            <div class="confirm-section">
+                                <h3>Shipping Address</h3>
+                                <div id="shippingAddress" class="confirm-info">
+                                    <!-- Will be filled dynamically -->
+                                </div>
+                                <button type="button" class="btn-link" onclick="backToShipping()">Edit</button>
+                            </div>
+                            <div class="confirm-section">
+                                <h3>Payment Method</h3>
+                                <div id="paymentMethod" class="confirm-info">
+                                    <!-- Will be filled dynamically -->
+                                </div>
+                                <button type="button" class="btn-link" onclick="backToPayment()">Edit</button>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn secondary" onclick="backToPayment()">Back</button>
+                            <button type="button" class="btn primary" onclick="placeOrder()">Place Order</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Order Success -->
+                    <div class="checkout-form hidden" id="successForm">
+                        <div class="order-success">
+                            <div class="success-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h2>Order Placed Successfully!</h2>
+                            <p>Your order has been placed and will be processed soon.</p>
+                            <div class="order-info">
+                                <p>Order Number: <span id="orderNumber">ECO-12345</span></p>
+                                <p>A confirmation email has been sent to <span id="orderEmail"></span></p>
+                            </div>
+                            <div class="form-actions">
+                                <a href="index.html" class="btn">Continue Shopping</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹0.00</span>
+            </div>
+            <button class="btn checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Checkout page specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            loadOrderSummary();
+            
+            // Set up payment method toggle
+            const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+            paymentMethods.forEach(method => {
+                method.addEventListener('change', function() {
+                    // Hide all payment details
+                    document.querySelectorAll('.payment-details').forEach(detail => {
+                        detail.classList.add('hidden');
+                    });
+                    
+                    // Show selected payment details
+                    document.getElementById(this.value + 'Payment').classList.remove('hidden');
+                });
+            });
+        });
+        
+        // Load order summary from cart
+        function loadOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0 };
+            const summaryItems = document.getElementById('summaryItems');
+            const subtotalElement = document.getElementById('subtotal');
+            const shippingElement = document.getElementById('shipping');
+            const taxElement = document.getElementById('tax');
+            const totalElement = document.getElementById('total');
+            
+            // Clear current items
+            summaryItems.innerHTML = '';
+            
+            if (cart.items.length === 0) {
+                summaryItems.innerHTML = '<div class="empty-summary">Your cart is empty</div>';
+                return;
+            }
+            
+            // Add each item to the summary
+            cart.items.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'summary-item';
+                itemElement.innerHTML = `
+                    <div class="item-name">${item.name} <span class="item-quantity">x${item.count}</span></div>
+                    <div class="item-price">₹${(item.price * item.count).toFixed(2)}</div>
+                `;
+                summaryItems.appendChild(itemElement);
+            });
+            
+            // Calculate totals
+            const subtotal = cart.total;
+            const shipping = subtotal > 1000 ? 0 : 100; // Free shipping over ₹1000
+            const tax = subtotal * 0.18; // 18% GST
+            const total = subtotal + shipping + tax;
+            
+            // Update totals in the UI
+            subtotalElement.textContent = `₹${subtotal.toFixed(2)}`;
+            shippingElement.textContent = shipping === 0 ? 'Free' : `₹${shipping.toFixed(2)}`;
+            taxElement.textContent = `₹${tax.toFixed(2)}`;
+            totalElement.textContent = `₹${total.toFixed(2)}`;
+        }
+        
+        // Navigation functions
+        function goToPayment() {
+            // Validate shipping form
+            const shippingForm = document.getElementById('shipping-details');
+            if (!shippingForm.checkValidity()) {
+                shippingForm.reportValidity();
+                return;
+            }
+            
+            // Hide shipping form, show payment form
+            document.getElementById('shippingForm').classList.add('hidden');
+            document.getElementById('paymentForm').classList.remove('hidden');
+            
+            // Update steps
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+        }
+        
+        function backToShipping() {
+            // Hide payment form, show shipping form
+            document.getElementById('paymentForm').classList.add('hidden');
+            document.getElementById('confirmForm').classList.add('hidden');
+            document.getElementById('shippingForm').classList.remove('hidden');
+            
+            // Update steps
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.remove('active');
+            document.getElementById('step1').classList.add('active');
+        }
+        
+        function backToPayment() {
+            // Hide confirm form, show payment form
+            document.getElementById('confirmForm').classList.add('hidden');
+            document.getElementById('paymentForm').classList.remove('hidden');
+            
+            // Update steps
+            document.getElementById('step3').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+        }
+        
+        function goToConfirm() {
+            // Validate payment form based on selected method
+            const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            
+            if (selectedMethod === 'card') {
+                const cardNumber = document.getElementById('cardNumber').value;
+                const expiryDate = document.getElementById('expiryDate').value;
+                const cvv = document.getElementById('cvv').value;
+                
+                if (!cardNumber || !expiryDate || !cvv) {
+                    alert('Please fill in all card details');
+                    return;
+                }
+            } else if (selectedMethod === 'upi') {
+                const upiId = document.getElementById('upiId').value;
+                if (!upiId) {
+                    alert('Please enter your UPI ID');
+                    return;
+                }
+            } else if (selectedMethod === 'netbanking') {
+                const bank = document.getElementById('bank').value;
+                if (!bank) {
+                    alert('Please select your bank');
+                    return;
+                }
+            } else if (selectedMethod === 'wallet') {
+                const wallet = document.getElementById('wallet-type').value;
+                if (!wallet) {
+                    alert('Please select your wallet');
+                    return;
+                }
+            }
+            
+            // Hide payment form, show confirm form
+            document.getElementById('paymentForm').classList.add('hidden');
+            document.getElementById('confirmForm').classList.remove('hidden');
+            
+            // Update steps
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.add('active');
+            
+            // Fill in confirmation details
+            updateConfirmationDetails();
+        }
+        
+        function updateConfirmationDetails() {
+            // Get shipping details
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const pincode = document.getElementById('pincode').value;
+            const state = document.getElementById('state').value;
+            
+            // Get payment method
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            let paymentDetails = '';
+            
+            switch(paymentMethod) {
+                case 'card':
+                    const cardNumber = document.getElementById('cardNumber').value;
+                    const lastFour = cardNumber.slice(-4);
+                    paymentDetails = `Credit/Debit Card ending in ${lastFour}`;
+                    break;
+                case 'upi':
+                    const upiId = document.getElementById('upiId').value;
+                    paymentDetails = `UPI: ${upiId}`;
+                    break;
+                case 'netbanking':
+                    const bank = document.getElementById('bank').value;
+                    const bankName = document.querySelector(`#bank option[value="${bank}"]`).textContent;
+                    paymentDetails = `Net Banking: ${bankName}`;
+                    break;
+                case 'wallet':
+                    const wallet = document.getElementById('wallet-type').value;
+                    const walletName = document.querySelector(`#wallet-type option[value="${wallet}"]`).textContent;
+                    paymentDetails = `Wallet: ${walletName}`;
+                    break;
+                case 'cod':
+                    paymentDetails = 'Cash on Delivery';
+                    break;
+            }
+            
+            // Update shipping address in confirmation
+            document.getElementById('shippingAddress').innerHTML = `
+                <p>${firstName} ${lastName}</p>
+                <p>${address}</p>
+                <p>${city}, ${state} - ${pincode}</p>
+                <p>Phone: ${phone}</p>
+                <p>Email: ${email}</p>
+            `;
+            
+            // Update payment method in confirmation
+            document.getElementById('paymentMethod').innerHTML = `
+                <p>${paymentDetails}</p>
+            `;
+            
+            // Store email for order confirmation
+            document.getElementById('orderEmail').textContent = email;
+        }
+        
+        function placeOrder() {
+            // Get cart data
+            const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0 };
+            
+            // Get shipping details
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const pincode = document.getElementById('pincode').value;
+            const state = document.getElementById('state').value;
+            
+            // Get payment method
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            
+            // Create order object
+            const order = {
+                customer: {
+                    firstName,
+                    lastName,
+                    email,
+                    phone,
+                    address,
+                    city,
+                    pincode,
+                    state
+                },
+                items: cart.items,
+                subtotal: cart.total,
+                shipping: cart.total > 1000 ? 0 : 100,
+                tax: cart.total * 0.18,
+                total: cart.total + (cart.total > 1000 ? 0 : 100) + (cart.total * 0.18),
+                paymentMethod,
+                orderDate: new Date().toISOString(),
+                orderNumber: 'ECO-' + Math.floor(100000 + Math.random() * 900000)
+            };
+            
+            // In a real application, you would send this order to your server
+            console.log('Order placed:', order);
+            
+            // For demo purposes, we'll just simulate a successful order
+            // Update order number in success screen
+            document.getElementById('orderNumber').textContent = order.orderNumber;
+            
+            // Clear cart
+            localStorage.setItem('cart', JSON.stringify({ items: [], total: 0 }));
+            
+            // Show success screen
+            document.getElementById('confirmForm').classList.add('hidden');
+            document.getElementById('successForm').classList.remove('hidden');
+            
+            // Update cart count
+            updateCartCount({ items: [], total: 0 });
+        }
+        
+        // Format card number with spaces
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = '';
+            
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedValue += ' ';
+                }
+                formattedValue += value[i];
+            }
+            
+            e.target.value = formattedValue;
+        });
+        
+        // Format expiry date
+        document.getElementById('expiryDate').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.length > 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>

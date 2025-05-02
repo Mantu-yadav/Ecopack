@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmetics & Beauty Packaging | EcoPack</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="LOGOPACK.png" alt="EcoPack Logo">
+                <span>EcoPack</span>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#solutions">Solutions</a></li>
+                    <li><a href="index.html#materials">Materials</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                </ul>
+            </nav>
+            <div class="cart-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Banner -->
+    <div class="category-banner">
+        <div class="container">
+            <h1>Cosmetics & Beauty Packaging</h1>
+            <p>Luxurious and sustainable packaging solutions for beauty products</p>
+        </div>
+    </div>
+
+    <!-- Category Navigation -->
+    <div class="category-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#containers" class="active">Containers</a></li>
+                <li><a href="#bottles">Bottles</a></li>
+                <li><a href="#tubes">Tubes</a></li>
+                <li><a href="#boxes">Gift Boxes</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Product Categories -->
+    <section class="products-section">
+        <div class="container">
+            <!-- Containers Category -->
+            <div id="containers" class="product-category">
+                <h2>Cosmetic Containers</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/products/cream-jar.jpg" alt="Luxury Cream Jar">
+                            <div class="product-tags">
+                                <span class="tag">Recyclable</span>
+                                <span class="tag">Premium</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Luxury Cream Jar</h3>
+                            <p>Premium glass jar with bamboo lid, 50ml</p>
+                            <div class="product-meta">
+                                <span class="price">₹299.00</span>
+                                <span class="per-unit">/25 units</span>
+                            </div>
+                            <button class="btn add-to-cart" onclick="addToCart({
+                                id: 'cream-jar1',
+                                name: 'Luxury Cream Jar',
+                                price: 299,
+                                quantity: 25
+                            })">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/products/serum-bottle.jpg" alt="Serum Dropper Bottle">
+                            <div class="product-tags">
+                                <span class="tag">Glass</span>
+                                <span class="tag">UV Protection</span>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Serum Dropper Bottle</h3>
+                            <p>Amber glass bottle with dropper, 30ml</p>
+                            <div class="product-meta">
+                                <span class="price">₹399.00</span>
+                                <span class="per-unit">/50 units</span>
+                            </div>
+                            <button class="btn add-to-cart" onclick="addToCart({
+                                id: 'serum-bottle1',
+                                name: 'Serum Dropper Bottle',
+                                price: 399,
+                                quantity: 50
+                            })">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more categories (bottles, tubes, boxes) with similar structure -->
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹0.00</span>
+            </div>
+            <button class="btn checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
