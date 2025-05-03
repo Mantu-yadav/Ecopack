@@ -6,6 +6,25 @@
     <title>Food & Beverage Packaging | EcoPack</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // Immediately update cart count when page loads
+        (function() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0 };
+                const itemCount = cart.items.reduce((total, item) => total + (item.count || 1), 0);
+
+                // Add event listener to update cart counts when DOM is ready
+                document.addEventListener('DOMContentLoaded', function() {
+                    const cartCountElements = document.querySelectorAll('.cart-count');
+                    cartCountElements.forEach(element => {
+                        element.textContent = itemCount;
+                    });
+                });
+            } catch (error) {
+                console.error("Error initializing cart count:", error);
+            }
+        })();
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -75,7 +94,7 @@
                                 <span class="price">₹99.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'box1', name: 'Standard Eco Box', price: 99, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -97,7 +116,7 @@
                                 <span class="price">₹149.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'box2', name: 'Premium Food Box', price: 149, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -119,7 +138,7 @@
                                 <span class="price">₹199.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'box3', name: 'Luxury Gift Box', price: 199, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -141,7 +160,7 @@
                                 <span class="price">₹79.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'box4', name: 'Compact Delivery Box', price: 79, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -163,7 +182,7 @@
                                 <span class="price">₹249.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'box5', name: 'Heavy Duty Box', price: 249, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -185,7 +204,7 @@
                                 <span class="price">₹169.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'box6', name: 'Window Display Box', price: 169, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -207,7 +226,7 @@
                                 <span class="price">₹299.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'box7', name: 'Insulated Box', price: 299, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -229,7 +248,7 @@
                                 <span class="price">₹189.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'box8', name: 'Foldable Storage Box', price: 189, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -251,7 +270,7 @@
                                 <span class="price">₹129.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'box9', name: 'Customizable Box', price: 129, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -273,7 +292,7 @@
                                 <span class="price">₹159.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'box10', name: 'Eco Mailer Box', price: 159, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -302,7 +321,7 @@
                                 <span class="price">₹199.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <!-- <button class="btn add-to-cart" 
+                            <!-- <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'jar1', name: 'Mason Storage Jar', price: 199, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button> -->
@@ -328,7 +347,7 @@
                                 <span class="price">₹249.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'jar2', name: 'Hexagonal Jar', price: 249, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -350,7 +369,7 @@
                                 <span class="price">₹299.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'jar3', name: 'Preserve Jar', price: 299, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -372,7 +391,7 @@
                                 <span class="price">₹129.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'jar4', name: 'Mini Spice Jar', price: 129, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -394,7 +413,7 @@
                                 <span class="price">₹349.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'jar5', name: 'Square Storage Jar', price: 349, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -416,7 +435,7 @@
                                 <span class="price">₹279.00</span>
                                 <span class="per-unit">/1 unit</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'jar6', name: 'Honey Jar', price: 279, quantity: 1})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -445,7 +464,7 @@
                                 <span class="price">₹149.00</span>
                                 <span class="per-unit">/50 units</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'cup1', name: 'Eco Paper Cup', price: 149, quantity: 50})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -468,7 +487,7 @@
                                 <span class="price">₹199.00</span>
                                 <span class="per-unit">/100 units</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'cup2', name: 'Clear PET Cup', price: 199, quantity: 100})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -491,7 +510,7 @@
                                 <span class="price">₹299.00</span>
                                 <span class="per-unit">/6 units</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'cup3', name: 'Glass Tumbler', price: 299, quantity: 6})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -514,7 +533,7 @@
                                 <span class="price">₹399.00</span>
                                 <span class="per-unit">/4 units</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'cup4', name: 'Bamboo Cup', price: 399, quantity: 4})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -537,7 +556,7 @@
                                 <span class="price">₹599.00</span>
                                 <span class="per-unit">/6 units</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'cup5', name: 'Wine Glass', price: 599, quantity: 6})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -560,7 +579,7 @@
                                 <span class="price">₹179.00</span>
                                 <span class="per-unit">/100 units</span>
                             </div>
-                            <button class="btn add-to-cart" 
+                            <button class="btn add-to-cart"
                                 onclick="addToCart({id: 'cup6', name: 'Kraft Paper Cup', price: 179, quantity: 100})">
                                 Add to Cart <i class="fas fa-shopping-cart"></i>
                             </button>
