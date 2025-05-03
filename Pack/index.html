@@ -45,7 +45,7 @@
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="toggleLoginModal()">&times;</span>
-            
+
             <!-- User Info Section (when logged in) -->
             <div id="userInfoSection" class="auth-form" style="display: none;">
                 <h2>Welcome Back</h2>
@@ -111,8 +111,8 @@
                 <h2>Reset Password</h2>
                 <form onsubmit="handlePasswordReset(event)">
                     <div class="form-group">
-                        <input type="email" id="resetEmail" 
-                               placeholder="Email Address" 
+                        <input type="email" id="resetEmail"
+                               placeholder="Email Address"
                                required>
                         <small class="error-message" id="resetEmailError"></small>
                     </div>
@@ -139,7 +139,7 @@
                 <span>Total:</span>
                 <span id="cartTotal">₹0.00</span>
             </div>
-            <button class="btn checkout-btn">Checkout</button>
+            <button class="btn checkout-btn" onclick="proceedToCheckout()">Checkout</button>
         </div>
     </div>
 
@@ -169,16 +169,16 @@
                     <h3>Food & Beverage</h3>
                     <p>Sustainable packaging for food and drinks</p>
                     <!-- Quick add button -->
-                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart({
+                    <button class="quick-add-btn" onclick="quickAddToCart({
                         id: 'quick-food-box',
                         name: 'Eco Food Box',
                         price: 199,
                         image: 'images/products/food-box.jpg'
-                    })">
+                    }, event)">
                         <i class="fas fa-cart-plus"></i> Quick Add
                     </button>
                 </div>
-                
+
                 <!-- Cosmetics & Beauty Card -->
                 <div class="solution-card" onclick="handleProductNavigation('cosmetics-beauty.html')">
                     <div class="solution-icon">
@@ -187,16 +187,16 @@
                     <h3>Cosmetics & Beauty</h3>
                     <p>Luxurious and eco-friendly beauty packaging</p>
                     <!-- Quick add button -->
-                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart({
+                    <button class="quick-add-btn" onclick="quickAddToCart({
                         id: 'quick-beauty-jar',
                         name: 'Eco Beauty Jar',
                         price: 299,
                         image: 'images/products/beauty-jar.jpg'
-                    })">
+                    }, event)">
                         <i class="fas fa-cart-plus"></i> Quick Add
                     </button>
                 </div>
-                
+
                 <!-- Pharmaceutical Card -->
                 <div class="solution-card" onclick="handleProductNavigation('pharmaceutical.html')">
                     <div class="solution-icon">
@@ -205,16 +205,16 @@
                     <h3>Pharmaceutical</h3>
                     <p>Safe and compliant medical packaging</p>
                     <!-- Quick add button -->
-                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart({
+                    <button class="quick-add-btn" onclick="quickAddToCart({
                         id: 'quick-pill-bottle',
                         name: 'Eco Pill Bottle',
                         price: 249,
                         image: 'images/products/pill-bottle.jpg'
-                    })">
+                    }, event)">
                         <i class="fas fa-cart-plus"></i> Quick Add
                     </button>
                 </div>
-                
+
                 <!-- E-commerce Card -->
                 <div class="solution-card" onclick="handleProductNavigation('ecommerce-innovations.html')">
                     <div class="solution-icon">
@@ -223,12 +223,12 @@
                     <h3>E-commerce & Innovations</h3>
                     <p>Smart packaging solutions for online retail</p>
                     <!-- Quick add button -->
-                    <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart({
+                    <button class="quick-add-btn" onclick="quickAddToCart({
                         id: 'quick-shipping-box',
                         name: 'Smart Shipping Box',
                         price: 349,
                         image: 'images/products/shipping-box.jpg'
-                    })">
+                    }, event)">
                         <i class="fas fa-cart-plus"></i> Quick Add
                     </button>
                 </div>
@@ -241,7 +241,7 @@
         <div class="container">
             <h2 class="section-title">Sustainable Materials</h2>
             <p class="section-subtitle">Better for your brand and the planet</p>
-            
+
             <div class="materials-showcase">
                 <div class="material-item">
                     <div class="material-img">
@@ -252,7 +252,7 @@
                         <p>Made from 100% post-consumer waste, our paper packaging is fully recyclable and biodegradable.</p>
                     </div>
                 </div>
-                
+
                 <div class="material-item reverse">
                     <div class="material-img">
                         <img src="Images/Compostableplastic.png" alt="Plant-based Plastics">
@@ -262,7 +262,7 @@
                         <p>Derived from renewable resources like corn and sugarcane, these plastics decompose naturally.</p>
                     </div>
                 </div>
-                
+
                 <div class="material-item">
                     <div class="material-img">
                         <img src="Images/Mushroom.jpg" alt="Mushroom Packaging">
@@ -303,7 +303,7 @@
     <section class="why-choose" id="why-choose">
         <div class="container">
             <h2 class="section-title">Why Choose EcoPack?</h2>
-            
+
             <div class="why-choose-grid">
                 <div class="why-choose-box">
                     <div class="box-content">
@@ -348,7 +348,7 @@
         </div>
     </section>
 
-    
+
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
@@ -384,7 +384,7 @@
         <div class="container">
             <h2 class="section-title">Get in Touch</h2>
             <p class="section-subtitle">Ready to transform your packaging? Contact us today.</p>
-            
+
             <div class="contact-container">
                 <div class="contact-info">
                     <div class="info-item">
@@ -415,7 +415,7 @@
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                
+
                 <form class="contact-form" id="quoteForm">
                     <div class="form-group">
                         <input type="text" id="name" placeholder="Your Name" required>
@@ -515,9 +515,9 @@
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
       const auth = getAuth(app);
-      
+
       console.log("Firebase initialized in module");
-      
+
       // Make Firebase available globally
       window.firebase = {
         auth: () => auth,
@@ -529,7 +529,22 @@
           updateProfile
         }
       };
-      
+
+      // Initialize cart count
+      document.addEventListener('DOMContentLoaded', function() {
+        // Get cart from localStorage
+        const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0 };
+
+        // Update cart count
+        const cartCountElements = document.querySelectorAll('.cart-count');
+        if (cart && cart.items) {
+          const itemCount = cart.items.reduce((total, item) => total + (item.count || 1), 0);
+          cartCountElements.forEach(element => {
+            element.textContent = itemCount;
+          });
+        }
+      });
+
       console.log("Firebase exposed to window object", window.firebase);
     </script>
 

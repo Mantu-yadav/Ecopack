@@ -6,6 +6,25 @@
     <title>Ecommerce & Innovations | EcoPack</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // Immediately update cart count when page loads
+        (function() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0 };
+                const itemCount = cart.items.reduce((total, item) => total + (item.count || 1), 0);
+
+                // Add event listener to update cart counts when DOM is ready
+                document.addEventListener('DOMContentLoaded', function() {
+                    const cartCountElements = document.querySelectorAll('.cart-count');
+                    cartCountElements.forEach(element => {
+                        element.textContent = itemCount;
+                    });
+                });
+            } catch (error) {
+                console.error("Error initializing cart count:", error);
+            }
+        })();
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -149,11 +168,62 @@
 
     <!-- Cart Sidebar -->
     <div id="cartSidebar" class="cart-sidebar">
-        <!-- Cart content -->
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹0.00</span>
+            </div>
+            <button class="btn checkout-btn" onclick="proceedToCheckout()">Checkout</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+      import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateProfile } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCaonDQGpYf5RApCn624J8Xfko03LIl89o",
+        authDomain: "ecopack-19e93.firebaseapp.com",
+        projectId: "ecopack-19e93",
+        storageBucket: "ecopack-19e93.firebasestorage.app",
+        messagingSenderId: "922149929294",
+        appId: "1:922149929294:web:363c9721d2129f8c951e1f",
+        measurementId: "G-24RXW0829K"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const auth = getAuth(app);
+
+      console.log("Firebase initialized in module");
+
+      // Make Firebase available globally
+      window.firebase = {
+        auth: () => auth,
+        authFunctions: {
+          createUserWithEmailAndPassword,
+          signInWithEmailAndPassword,
+          signOut,
+          sendPasswordResetEmail,
+          updateProfile
+        }
+      };
+    </script>
+
+    <script src="cart-init.js"></script>
 </body>
 </html>
-
 

@@ -36,7 +36,7 @@
     <section class="checkout-section">
         <div class="container">
             <h1 class="section-title">Checkout</h1>
-            
+
             <div class="checkout-container">
                 <!-- Order Summary -->
                 <div class="order-summary">
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Checkout Form -->
                 <div class="checkout-form-container">
                     <div class="checkout-steps">
@@ -80,7 +80,7 @@
                             <span class="step-text">Confirm</span>
                         </div>
                     </div>
-                    
+
                     <!-- Shipping Form -->
                     <div class="checkout-form" id="shippingForm">
                         <h2>Shipping Information</h2>
@@ -138,7 +138,7 @@
                             </div>
                         </form>
                     </div>
-                    
+
                     <!-- Payment Form -->
                     <div class="checkout-form hidden" id="paymentForm">
                         <h2>Payment Method</h2>
@@ -179,7 +179,7 @@
                                 </label>
                             </div>
                         </div>
-                        
+
                         <!-- Card Payment Form (default) -->
                         <div class="payment-details" id="cardPayment">
                             <div class="form-group">
@@ -201,7 +201,7 @@
                                 <input type="text" id="nameOnCard">
                             </div>
                         </div>
-                        
+
                         <!-- UPI Payment Form -->
                         <div class="payment-details hidden" id="upiPayment">
                             <div class="form-group">
@@ -209,7 +209,7 @@
                                 <input type="text" id="upiId" placeholder="yourname@upi">
                             </div>
                         </div>
-                        
+
                         <!-- Net Banking Payment Form -->
                         <div class="payment-details hidden" id="netbankingPayment">
                             <div class="form-group">
@@ -224,7 +224,7 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <!-- Wallet Payment Form -->
                         <div class="payment-details hidden" id="walletPayment">
                             <div class="form-group">
@@ -238,7 +238,7 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <!-- COD Payment Form -->
                         <div class="payment-details hidden" id="codPayment">
                             <p class="cod-note">
@@ -246,13 +246,13 @@
                                 Cash on Delivery is available for orders under ₹10,000. A nominal fee of ₹50 will be added to your order.
                             </p>
                         </div>
-                        
+
                         <div class="form-actions">
                             <button type="button" class="btn secondary" onclick="backToShipping()">Back</button>
                             <button type="button" class="btn" onclick="goToConfirm()">Review Order</button>
                         </div>
                     </div>
-                    
+
                     <!-- Order Confirmation -->
                     <div class="checkout-form hidden" id="confirmForm">
                         <h2>Review Your Order</h2>
@@ -277,7 +277,7 @@
                             <button type="button" class="btn primary" onclick="placeOrder()">Place Order</button>
                         </div>
                     </div>
-                    
+
                     <!-- Order Success -->
                     <div class="checkout-form hidden" id="successForm">
                         <div class="order-success">
@@ -314,7 +314,7 @@
                 <span>Total:</span>
                 <span id="cartTotal">₹0.00</span>
             </div>
-            <button class="btn checkout-btn">Checkout</button>
+            <button class="btn checkout-btn" onclick="proceedToCheckout()">Checkout</button>
         </div>
     </div>
 
@@ -323,7 +323,7 @@
         // Checkout page specific JavaScript
         document.addEventListener('DOMContentLoaded', function() {
             loadOrderSummary();
-            
+
             // Set up payment method toggle
             const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
             paymentMethods.forEach(method => {
@@ -332,13 +332,13 @@
                     document.querySelectorAll('.payment-details').forEach(detail => {
                         detail.classList.add('hidden');
                     });
-                    
+
                     // Show selected payment details
                     document.getElementById(this.value + 'Payment').classList.remove('hidden');
                 });
             });
         });
-        
+
         // Load order summary from cart
         function loadOrderSummary() {
             const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0 };
@@ -347,15 +347,15 @@
             const shippingElement = document.getElementById('shipping');
             const taxElement = document.getElementById('tax');
             const totalElement = document.getElementById('total');
-            
+
             // Clear current items
             summaryItems.innerHTML = '';
-            
+
             if (cart.items.length === 0) {
                 summaryItems.innerHTML = '<div class="empty-summary">Your cart is empty</div>';
                 return;
             }
-            
+
             // Add each item to the summary
             cart.items.forEach(item => {
                 const itemElement = document.createElement('div');
@@ -366,20 +366,20 @@
                 `;
                 summaryItems.appendChild(itemElement);
             });
-            
+
             // Calculate totals
             const subtotal = cart.total;
             const shipping = subtotal > 1000 ? 0 : 100; // Free shipping over ₹1000
             const tax = subtotal * 0.18; // 18% GST
             const total = subtotal + shipping + tax;
-            
+
             // Update totals in the UI
             subtotalElement.textContent = `₹${subtotal.toFixed(2)}`;
             shippingElement.textContent = shipping === 0 ? 'Free' : `₹${shipping.toFixed(2)}`;
             taxElement.textContent = `₹${tax.toFixed(2)}`;
             totalElement.textContent = `₹${total.toFixed(2)}`;
         }
-        
+
         // Navigation functions
         function goToPayment() {
             // Validate shipping form
@@ -388,47 +388,47 @@
                 shippingForm.reportValidity();
                 return;
             }
-            
+
             // Hide shipping form, show payment form
             document.getElementById('shippingForm').classList.add('hidden');
             document.getElementById('paymentForm').classList.remove('hidden');
-            
+
             // Update steps
             document.getElementById('step1').classList.remove('active');
             document.getElementById('step2').classList.add('active');
         }
-        
+
         function backToShipping() {
             // Hide payment form, show shipping form
             document.getElementById('paymentForm').classList.add('hidden');
             document.getElementById('confirmForm').classList.add('hidden');
             document.getElementById('shippingForm').classList.remove('hidden');
-            
+
             // Update steps
             document.getElementById('step2').classList.remove('active');
             document.getElementById('step3').classList.remove('active');
             document.getElementById('step1').classList.add('active');
         }
-        
+
         function backToPayment() {
             // Hide confirm form, show payment form
             document.getElementById('confirmForm').classList.add('hidden');
             document.getElementById('paymentForm').classList.remove('hidden');
-            
+
             // Update steps
             document.getElementById('step3').classList.remove('active');
             document.getElementById('step2').classList.add('active');
         }
-        
+
         function goToConfirm() {
             // Validate payment form based on selected method
             const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-            
+
             if (selectedMethod === 'card') {
                 const cardNumber = document.getElementById('cardNumber').value;
                 const expiryDate = document.getElementById('expiryDate').value;
                 const cvv = document.getElementById('cvv').value;
-                
+
                 if (!cardNumber || !expiryDate || !cvv) {
                     alert('Please fill in all card details');
                     return;
@@ -452,19 +452,19 @@
                     return;
                 }
             }
-            
+
             // Hide payment form, show confirm form
             document.getElementById('paymentForm').classList.add('hidden');
             document.getElementById('confirmForm').classList.remove('hidden');
-            
+
             // Update steps
             document.getElementById('step2').classList.remove('active');
             document.getElementById('step3').classList.add('active');
-            
+
             // Fill in confirmation details
             updateConfirmationDetails();
         }
-        
+
         function updateConfirmationDetails() {
             // Get shipping details
             const firstName = document.getElementById('firstName').value;
@@ -475,11 +475,11 @@
             const city = document.getElementById('city').value;
             const pincode = document.getElementById('pincode').value;
             const state = document.getElementById('state').value;
-            
+
             // Get payment method
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
             let paymentDetails = '';
-            
+
             switch(paymentMethod) {
                 case 'card':
                     const cardNumber = document.getElementById('cardNumber').value;
@@ -504,7 +504,7 @@
                     paymentDetails = 'Cash on Delivery';
                     break;
             }
-            
+
             // Update shipping address in confirmation
             document.getElementById('shippingAddress').innerHTML = `
                 <p>${firstName} ${lastName}</p>
@@ -513,20 +513,20 @@
                 <p>Phone: ${phone}</p>
                 <p>Email: ${email}</p>
             `;
-            
+
             // Update payment method in confirmation
             document.getElementById('paymentMethod').innerHTML = `
                 <p>${paymentDetails}</p>
             `;
-            
+
             // Store email for order confirmation
             document.getElementById('orderEmail').textContent = email;
         }
-        
+
         function placeOrder() {
             // Get cart data
             const cart = JSON.parse(localStorage.getItem('cart')) || { items: [], total: 0 };
-            
+
             // Get shipping details
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;
@@ -536,10 +536,10 @@
             const city = document.getElementById('city').value;
             const pincode = document.getElementById('pincode').value;
             const state = document.getElementById('state').value;
-            
+
             // Get payment method
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-            
+
             // Create order object
             const order = {
                 customer: {
@@ -561,48 +561,48 @@
                 orderDate: new Date().toISOString(),
                 orderNumber: 'ECO-' + Math.floor(100000 + Math.random() * 900000)
             };
-            
+
             // In a real application, you would send this order to your server
             console.log('Order placed:', order);
-            
+
             // For demo purposes, we'll just simulate a successful order
             // Update order number in success screen
             document.getElementById('orderNumber').textContent = order.orderNumber;
-            
+
             // Clear cart
             localStorage.setItem('cart', JSON.stringify({ items: [], total: 0 }));
-            
+
             // Show success screen
             document.getElementById('confirmForm').classList.add('hidden');
             document.getElementById('successForm').classList.remove('hidden');
-            
+
             // Update cart count
             updateCartCount({ items: [], total: 0 });
         }
-        
+
         // Format card number with spaces
         document.getElementById('cardNumber').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
             let formattedValue = '';
-            
+
             for (let i = 0; i < value.length; i++) {
                 if (i > 0 && i % 4 === 0) {
                     formattedValue += ' ';
                 }
                 formattedValue += value[i];
             }
-            
+
             e.target.value = formattedValue;
         });
-        
+
         // Format expiry date
         document.getElementById('expiryDate').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
-            
+
             if (value.length > 2) {
                 value = value.substring(0, 2) + '/' + value.substring(2, 4);
             }
-            
+
             e.target.value = value;
         });
     </script>
